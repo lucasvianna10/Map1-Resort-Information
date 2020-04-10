@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>British Columbia Ski Resort Information</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.css" rel="stylesheet" />
+<style>
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+h2,
+h3 {
+  margin: 10px;
+  font-size: 1.2em;
+}
+
+h3 {
+  font-size: 1em;
+}
+
+p {
+  font-size: 0.85em;
+  margin: 10px;
+  text-align: left;
+}
+
+/**
+* Create a position for the map
+* on the page */
+#map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+/**
+* Set rules for how the map overlays
+* (information box ) will be displayed
+* on the page. */
+.map-overlay {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.8);
+  margin-right: 20px;
+  font-family: Arial, sans-serif;
+  overflow: auto;
+  border-radius: 3px;
+}
+
+#features {
+  top: 0;
+  height: 100px;
+  margin-top: 20px;
+  width: 250px;
+};
+</style>
+
+</head>
+<body>
+<style>
+.mapboxgl-popup {
+max-width: 500px;
+font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+</style>
+<div id="map"></div>
+<div class='map-overlay' id='features'><h2>British Columbia Ski Resort Information </h2><div id='pd'><p>Click On The Mountain Icons!</p></div></div>
+
+
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoibHVjYXN2aWFubmEiLCJhIjoiY2s2andpODk0MDBtcTNmbnRsYng1b2FjayJ9.QNUykVW66KmhwktgGT6Nuw';
+var map = new mapboxgl.Map({
+container: 'map', // container id
+style: 'mapbox://styles/lucasvianna/ck8gj05lh0a1e1io01f4ilroi', //hosted style id
+
+});
+var skipopup = new mapboxgl.Popup({ offset: [0, -15] })
+
+map.on('click', function(e) {
+  var features = map.queryRenderedFeatures(e.point, {
+    layers: ['bc-ski-resorts'] });
+
+  if (!features.length) {
+		skipopup.remove();
+		return;
+  }
+
+  var feature = features[0];
+
+
+    skipopup.setLngLat(feature.geometry.coordinates)
+    .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+    .addTo(map);
+
+
+	});
+
+  var cities = {
+
+'type': 'FeatureCollection',
+'features': [
+{
+  'type': 'Feature',
+  'properties': {},
+  'geometry': {
+  'type': 'Point',
+  'coordinates': [-120.6476, 50.7267],
+  'zoom': 6
+  }
+  },
+
+
+
+{
+'type': 'Feature',
+'properties': {},
+'geometry': {
+'type': 'Point',
+'coordinates': [-125.3039175, 49.7415107],
+'zoom': 8.2
+}
+},
+
+{
+'type': 'Feature',
+'properties': {},
+'geometry': {
+'type': 'Point',
+'coordinates': [-122.537310, 49.362559],
+'zoom': 8.2
+}
+},
+
+{
+'type': 'Feature',
+'properties': {},
+'geometry': {
+'type': 'Point',
+'coordinates': [-122.954547, 50.113438],
+'zoom': 8.2
+}
+},
+
+{
+'type': 'Feature',
+'properties': {},
+'geometry': {
+'type': 'Point',
+'coordinates': [-118.887523, 50.697362],
+'zoom': 8.2
+}
+},
+
+{
+'type': 'Feature',
+'properties': {},
+'geometry': {
+'type': 'Point',
+'coordinates': [-117.862787, 49.370190],
+'zoom': 8.2
+}
+},
+
+{
+'type': 'Feature',
+'properties': {},
+'geometry': {
+'type': 'Point',
+'coordinates': [-116.835811, 50.873021],
+'zoom': 8.2
+}
+},
+
+{
+'type': 'Feature',
+'properties': {},
+'geometry': {
+'type': 'Point',
+'coordinates': [-115.759061, 49.514190],
+'zoom': 8.2
+}
+},
+{
+  'type': 'Feature',
+  'properties': {},
+  'geometry': {
+  'type': 'Point',
+  'coordinates': [-120.6476, 50.7267],
+  'zoom': 6
+  }
+  },
+  {
+  'type': 'Feature',
+  'properties': {},
+  'geometry': {
+  'type': 'Point',
+  'coordinates': [-125.3039175, 49.7415107],
+  'zoom': 8.2
+  }
+  },
+
+  {
+  'type': 'Feature',
+  'properties': {},
+  'geometry': {
+  'type': 'Point',
+  'coordinates': [-122.537310, 49.362559],
+  'zoom': 8.2
+  }
+  },
+
+  {
+  'type': 'Feature',
+  'properties': {},
+  'geometry': {
+  'type': 'Point',
+  'coordinates': [-122.954547, 50.113438],
+  'zoom': 8.2
+  }
+  },
+
+  {
+  'type': 'Feature',
+  'properties': {},
+  'geometry': {
+  'type': 'Point',
+  'coordinates': [-118.887523, 50.697362],
+  'zoom': 8.2
+  }
+  },
+
+  {
+  'type': 'Feature',
+  'properties': {},
+  'geometry': {
+  'type': 'Point',
+  'coordinates': [-117.862787, 49.370190],
+  'zoom': 8.2
+  }
+  },
+
+  {
+  'type': 'Feature',
+  'properties': {},
+  'geometry': {
+  'type': 'Point',
+  'coordinates': [-116.835811, 50.873021],
+  'zoom': 8.2
+  }
+  },
+
+  {
+  'type': 'Feature',
+  'properties': {},
+  'geometry': {
+  'type': 'Point',
+  'coordinates': [-115.759061, 49.514190],
+  'zoom': 8.2
+  }
+  },
+  {
+    'type': 'Feature',
+    'properties': {},
+    'geometry': {
+    'type': 'Point',
+    'coordinates': [-120.6476, 50.7267],
+    'zoom': 6
+    }
+    },
+    {
+    'type': 'Feature',
+    'properties': {},
+    'geometry': {
+    'type': 'Point',
+    'coordinates': [-125.3039175, 49.7415107],
+    'zoom': 8.2
+    }
+    },
+
+    {
+    'type': 'Feature',
+    'properties': {},
+    'geometry': {
+    'type': 'Point',
+    'coordinates': [-122.537310, 49.362559],
+    'zoom': 8.2
+    }
+    },
+
+    {
+    'type': 'Feature',
+    'properties': {},
+    'geometry': {
+    'type': 'Point',
+    'coordinates': [-122.954547, 50.113438],
+    'zoom': 8.2
+    }
+    },
+
+    {
+    'type': 'Feature',
+    'properties': {},
+    'geometry': {
+    'type': 'Point',
+    'coordinates': [-118.887523, 50.697362],
+    'zoom': 8.2
+    }
+    },
+
+    {
+    'type': 'Feature',
+    'properties': {},
+    'geometry': {
+    'type': 'Point',
+    'coordinates': [-117.862787, 49.370190],
+    'zoom': 8.2
+    }
+    },
+
+    {
+    'type': 'Feature',
+    'properties': {},
+    'geometry': {
+    'type': 'Point',
+    'coordinates': [-116.835811, 50.873021],
+    'zoom': 8.2
+    }
+    },
+
+    {
+    'type': 'Feature',
+    'properties': {},
+    'geometry': {
+    'type': 'Point',
+    'coordinates': [-115.759061, 49.514190],
+    'zoom': 8.2
+    }
+    },
+    {
+      'type': 'Feature',
+      'properties': {},
+      'geometry': {
+      'type': 'Point',
+      'coordinates': [-120.6476, 50.7267],
+      'zoom': 6
+      }
+      },
+
+]
+};
+
+map.on('load', function() {
+cities.features.forEach(function(city, index) {
+setTimeout(function() {
+map.jumpTo({ center: city.geometry.coordinates, zoom: city.geometry.zoom });
+}, 20000 * index);
+});
+
+
+});
+
+
+
+</script>
+
+</body>
+</html>
